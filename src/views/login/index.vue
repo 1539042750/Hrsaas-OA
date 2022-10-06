@@ -111,7 +111,6 @@ export default {
             // 应该登录成功之后
             // async标记的函数实际上一个promise对象
             // await下面的代码 都是成功执行的代码
-            console.log(111)
             this.$router.push('/')
           } catch (error) {
             console.log(error)
