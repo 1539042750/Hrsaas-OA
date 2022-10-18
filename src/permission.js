@@ -12,7 +12,13 @@ router.beforeEach(async(to, from, next) => {
       next('/')
     } else {
       if (!store.getters.userId) {
-        await store.dispatch('user/getUserInfo')
+        const { roles } = await store.dispatch('user/getUserInfo')
+        // routes就是筛选得到的动态路由
+        console.log(roles)
+        const routes = await store.dispatch('permission/filterRoutes', roles.menus)
+        // 动态路由 添加到 路由表中 默认的路由表 只有静态路由 没有动态路由
+        router.addRoutes([...routes, { path: '*', redirect: '/404', hidden: true }])
+        next(to.path)
       }
       next()
     }
