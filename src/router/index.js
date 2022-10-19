@@ -9,6 +9,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import userRouter from './modules/user'
 
 Vue.use(Router)
 
@@ -59,7 +60,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
@@ -74,7 +75,9 @@ export const constantRoutes = [
       meta: {
         title: '导入'
       }
-    }]
+    },
+    userRouter
+    ]
   }
   // 404 page must be placed at the end !!!
 

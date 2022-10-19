@@ -16,6 +16,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import * as directives from '@/directives'
 import checkPermission from '@/mixin/checkPermission'
+import i18n from '@/lang' // 引入i18n实例
 
 Object.keys(directives).forEach(key => {
   Vue.directive(key, directives[key])
@@ -44,11 +45,16 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 Vue.use(Component)// 注册自己的插件
 Vue.mixin(checkPermission) // 全局混入  会让所有的组件都自动拥有该混入组件的方法和属性
+// 设置element为当前的语言
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })
